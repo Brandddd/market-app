@@ -17,7 +17,7 @@ Route::group(['prefix' => 'Products', 'controller' => ProductController::class],
 	Route::get('/GetAllProducts', 'getAllProducts');
 });
 
-// ----- Routes for Login, Register, Auth ------
+// ----- Routes for Login ------
 Route::group(['controller' => LoginController::class], function () {
 	// Login Routes...
 	Route::get('login', 'showLoginForm')->name('login');
