@@ -7,6 +7,15 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
+	// ---------- WEB methods ----------
+	// ---------- Read ----------
+	public function showHomeWithProducts()
+	{
+		$products = $this->getAllProducts()->original['products'];
+		return view('index', compact('products'));
+	}
+
+	// ---------- API methods ----------
     // ---------- Create ----------
 	public function createAProduct(Request $request)
 	{
@@ -18,8 +27,8 @@ class ProductController extends Controller
 	// ---------- Read ----------
 	public function getAllProducts()
 	{
-		$product = Product::get();
-		return response()->json(['product' => $product], 200);
+		$products = Product::with('Category')->get();
+		return response()->json(['products' => $products], 200);
 	}
 
 	public function getAProduct(Product $product)
