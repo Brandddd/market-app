@@ -9,6 +9,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SaleController;
 use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 // -------------------- WEB Route home --------------------
@@ -42,38 +43,5 @@ Route::group(['prefix' => 'Categories', 'controller' => CategoryController::clas
 	Route::get('/GetAllCategories', 'getAllCategories');
 });
 
-// ----- Routes for Login ------
-Route::group(['controller' => LoginController::class], function () {
-	// Login Routes...
-	Route::get('login', 'showLoginForm')->name('login');
-	Route::post('login', 'login');
-	// Logout Routes...
-	Route::post('logout', 'logout')->name('logout');
-});
-
-// Registration Routes...
-Route::group(['controller' => ForgotPasswordController::class], function () {
-	// Forgot Pasword reset routes...
-	Route::get('password/reset', 'showLinkRequestForm')->name('password.request');
-
-	Route::post('password/email', 'sendResetLinkEmail')->name('password.email');
-});
-
-Route::group(['controller' => ResetPasswordController::class], function () {
-	// Password Reset Routes...
-	Route::get('password/reset/{token}', 'showResetForm')->name('password.reset');
-	Route::post('password/reset', 'reset')->name('password.update');
-});
-
-Route::group(['controller' => ConfirmPasswordController::class], function () {
-	// Password Confirmation Routes...
-	Route::get('password/confirm', 'showConfirmForm')->name('password.confirm');
-	Route::post('password/confirm', 'confirm');
-});
-
-Route::group(['controller' => VerificationController::class], function () {
-	// Email Verification Routes...
-	Route::get('email/verify', 'show')->name('verification.notice');
-	Route::get('email/verify/{id}/{hash}', 'verify')->name('verification.verify');
-	Route::post('email/resend', 'resend')->name('verification.resend');
-});
+// -------------------- Auth Rutes ----------------------
+Auth::routes();

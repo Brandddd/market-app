@@ -9,11 +9,16 @@
 			v-for="product in products_data"
 			:key="product.id"
 		>
-			<img
-				src="https://api.lorem.space/image/house?w=150&h=150"
-				class="card-img-top"
-				alt="Producto"
-			/>
+			<div v-if="product.image">
+				<img :src="`storage/images/${product.image}`" class="card-img-top" alt="Producto" />
+			</div>
+			<div v-else>
+				<img
+					src="https://api.lorem.space/image/house?w=150&h=150"
+					class="card-img-top"
+					alt="Producto"
+				/>
+			</div>
 			<div class="card-body">
 				<h5 class="card-title">
 					<strong>{{ product.name }}</strong>

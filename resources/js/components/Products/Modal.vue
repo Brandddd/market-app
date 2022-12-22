@@ -17,8 +17,8 @@
 				<div class="modal-body">
 					<!-- Formulario para crear producto dentro del modal -->
 					<form @submit.prevent="manageProduct" enctype="multipart/form-data">
-						<!-- <div class="mb-3">
-							<label for="images" class="form-label">Portada</label>
+						<div class="mb-3">
+							<label for="images" class="form-label">Imagen</label>
 							<input
 								type="file"
 								class="form-control"
@@ -26,7 +26,7 @@
 								accept="image/*"
 								@change="loadImage"
 							/>
-						</div> -->
+						</div>
 						<!-- Vue - select libreria -->
 						<div class="mb-3">
 							<label for="category" class="form-label">Categoría</label>
@@ -122,10 +122,14 @@ export default {
 			this.product = { ...this.product_data }
 			this.is_create = false
 		},
-		// load image
+		loadImage(event) {
+			this.file = event.target.files[0]
+		},
 		loadFormData() {
 			const form_data = new FormData()
-			// data image
+
+			if (this.file) form_data.append('image', this.file, this.file.name)
+
 			form_data.append('category_id', this.product.category_id)
 			form_data.append('name', this.product.name)
 			form_data.append('description', this.product.description)
@@ -150,6 +154,7 @@ export default {
 					title: 'Felicidades!',
 					text: 'Producto almacenado.'
 				})
+
 				this.$parent.closeModal()
 				location.reload()
 			} catch (error) {
