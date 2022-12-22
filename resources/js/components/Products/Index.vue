@@ -2,7 +2,7 @@
 	<div class="card mx-5 my-5">
 		<div class="card-header d-flex justify-content-between">
 			<h2><strong>Tabla de productos:</strong></h2>
-			<button class="btn btn-primary">Crear producto</button>
+			<button @click="openModal" class="btn btn-primary">Crear producto</button>
 		</div>
 
 		<div class="card-body">
@@ -17,10 +17,9 @@
 				</div>
 			</section>
 		</div>
-		<!-- <section v-if="load_modal"> -->
-			<!-- Se lo enviamos al modal con un props de modal-->
-			<!-- <modal :book_data="book" /> -->
-		<!-- </section> -->
+		<section v-if="load_modal">
+			<modal-products :product_data="product" />
+		</section>
 	</div>
 </template>
 
@@ -44,13 +43,34 @@ export default {
 		}
 	},
 	created() {
-		this.products = this.product_data
-		this.load = true
+		this.getProducts()
 	},
 	methods: {
+		getProducts() {
+			this.products = this.product_data
+			this.load = true
+		},
 		openModal() {
-
-
+			this.load_modal = true
+			setTimeout(() => {
+				this.modal = new bootstrap.Modal(document.getElementById('product_modal'), {
+					keyboard: false
+				})
+				this.modal.show()
+				const modal = document.getElementById('product_modal')
+				modal.addEventListener('hidden.bs.modal', () => {
+					this.load_modal = false
+					this.product = null
+				})
+			}, 200)
+		},
+		closeModal() {
+			this.modal.hide()
+			this.getProducts()
+		},
+		editProduct(product) {
+			this.product = product
+			this.openModal()
 		}
 	}
 }

@@ -40,7 +40,7 @@ class ProductController extends Controller
 	public function updateAProduct(Request $request, Product $product)
 	{
 		$product->update($request->all());
-		return response()->json(['product' => $product->refresh()], 201);
+		return response()->json(['product' => $product->refresh()->load('Category')], 201);
 	}
 
 	// ---------- Delete ----------

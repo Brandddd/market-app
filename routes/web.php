@@ -18,6 +18,10 @@ Route::get('/', [CategoryController::class, 'showCategoriesWithProducts'])->name
 Route::group(['prefix' => 'Products', 'controller' => ProductController::class], function ()
 {
 	Route::get('/', 'showTableProducts')->name('products');
+	Route::get('/GetAProduct/{product}', 'getAProduct');
+	Route::post('/CreateAProduct', 'createAProduct');
+	Route::post('/UpdateAProduct/{product}', 'updateAProduct');  // Update
+	Route::delete('/DeleteAProduct/{product}', 'deleteAProduct');
 });
 
 // -------------------- WEB Routes for Users --------------------
@@ -35,7 +39,7 @@ Route::group(['prefix' => 'Sales', 'controller' => SaleController::class], funct
 // -------------------- WEB Routes for Categories --------------------
 Route::group(['prefix' => 'Categories', 'controller' => CategoryController::class], function ()
 {
-	//
+	Route::get('/GetAllCategories', 'getAllCategories');
 });
 
 // ----- Routes for Login ------

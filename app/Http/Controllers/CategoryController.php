@@ -12,4 +12,10 @@ class CategoryController extends Controller
 		$categories = Category::with('Products')->get();
 		return view('index', compact('categories'));
 	}
+
+	public function getAllCategories()
+	{
+		$categories = Category::get();
+		return response()->json(['categories' => $categories], 200);
+	}
 }

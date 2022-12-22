@@ -13,11 +13,13 @@
 			<tr v-for="(product, index) in products" :key="index">
 				<td>{{ product.name }}</td>
 				<td>{{ product.category.name }}</td>
-				<td>{{ product.price }}</td>
+				<td>$ {{ product.price }}</td>
 				<td>{{ product.stock }}</td>
 				<td>
-					<button class="btn btn-warning me-2">Editar</button>
-					<button class="btn btn-danger">Eliminar</button>
+					<button class="btn btn-warning me-2" @click="getProduct(product.id)">
+						Editar
+					</button>
+					<button class="btn btn-danger" @click="deleteProduct(product)">Eliminar</button>
 				</td>
 			</tr>
 		</tbody>
@@ -26,15 +28,48 @@
 
 <script>
 export default {
-	props: ["products_data"],
+	props: ['products_data'],
 	data() {
 		return {
 			products: []
 		}
 	},
 	created() {
-		this.products = this.products_data
-		console.log(this.products)
+		this.index()
+	},
+	methods: {
+		index() {
+			this.products = { ...this.products_data }
+		},
+		async getProduct(product_id) {
+			try {
+				const { data } = await axios.get(`Products/GetAProduct/${product_id}`)
+				this.$parent.editProduct(data.product)
+			} catch (error) {
+				console.error(error)
+			}
+		},
+		async deleteProduct(product) {
+			try {
+				const result = await swal.fire({
+					icon: 'info',
+					title: '¿Seguro deseas borrar el producto?',
+					showCancelButton: true,
+					confirmButtonText: 'Eliminar'
+				})
+				if (!result.isConfirmed) return
+				await axios.delete(`Products/DeleteAProduct/${product.id}`)
+				this.$parent.getProducts()
+				location.reload()
+				swal.fire({
+					icon: 'success',
+					title: 'Felicidades!',
+					text: 'Producto eliminado exitosamente.'
+				})
+			} catch (error) {
+				console.error(error)
+			}
+		}
 	}
 }
 </script>
