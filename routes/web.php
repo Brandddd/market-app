@@ -5,16 +5,24 @@ use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\Auth\VerificationController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', [ProductController::class, 'showHomeWithProducts'])->name('home');
+// -------------------- WEB Routes home --------------------
+Route::get('/', [CategoryController::class, 'showCategoriesWithProducts'])->name('home');
 
 // -------------------- WEB Routes for Products --------------------
 Route::group(['prefix' => 'Products', 'controller' => ProductController::class], function ()
 {
 	Route::get('/GetAllProducts', 'getAllProducts');
+});
+
+// -------------------- WEB Routes for Categories --------------------
+Route::group(['prefix' => 'Categories', 'controller' => CategoryController::class], function ()
+{
+	Route::get('/ShowCategoriesWithProducts', 'showCategoriesWithProducts');
 });
 
 // ----- Routes for Login ------
