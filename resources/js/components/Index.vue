@@ -20,6 +20,7 @@
 
 <script>
 import CategoryPreview from './Categories/CategoryPreview.vue'
+
 export default {
 	props: ['categories_data'],
 	components: {
@@ -33,7 +34,6 @@ export default {
 	},
 	mounted() {
 		this.categories = this.categories_data
-		console.log(this.categories)
 		this.load = true
 	},
 	methods: {}

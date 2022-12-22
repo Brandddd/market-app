@@ -27,11 +27,11 @@
                         </li>
                     @endif
 
-                    @if (Route::has('register'))
+                    {{-- @if (Route::has('register'))
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('register') }}">Registrarse</a>
                         </li>
-                    @endif
+                    @endif --}}
                 @else
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
@@ -41,16 +41,21 @@
 
                         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
 
-                            {{-- @role('admin')
-                            @endrole --}}
-                            {{-- Usuarios --}}
-                            <a class="dropdown-item" {{-- href="{{ route('users') }}" --}}>
-                                Gestión de usuarios
+                            {{-- @role('admin') --}}
+                            {{-- Productos --}}
+                            <a class="dropdown-item" href="{{ route('products') }}">
+                                Gestión de productos
                             </a>
 
-                            {{-- Libros --}}
-                            <a class="dropdown-item" {{-- href="{{ route('books') }}" --}}>
-                                Gestión de productos
+                            {{-- Usuarios --}}
+                            <a class="dropdown-item" href="{{ route('users') }}">
+                                Gestión de usuarios
+                            </a>
+                            {{-- @endrole  --}}
+
+                            {{-- Carrito --}}
+                            <a class="dropdown-item" href="{{ route('sales') }}">
+                                Carrito de compras
                             </a>
 
                             {{-- Logout --}}

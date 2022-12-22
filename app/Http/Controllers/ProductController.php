@@ -9,10 +9,10 @@ class ProductController extends Controller
 {
 	// ---------- WEB methods ----------
 	// ---------- Read ----------
-	public function showHomeWithProducts()
+	public function showTableProducts()
 	{
 		$products = $this->getAllProducts()->original['products'];
-		return view('index', compact('products'));
+		return view('products.index', compact('products'));
 	}
 
 	// ---------- API methods ----------
