@@ -40,6 +40,7 @@ Route::group(['prefix' => 'Sales', 'controller' => SaleController::class], funct
 Route::group(['prefix' => 'Categories', 'controller' => CategoryController::class], function ()
 {
 	Route::get('/GetAllCategories', 'getAllCategories');
+	Route::get('/GetAllProductsByCategory/{category}', 'getAllProductsByCategory');
 });
 
 // -------------------- Auth Rutes ----------------------

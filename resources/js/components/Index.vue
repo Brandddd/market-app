@@ -5,8 +5,7 @@
 			<category-preview
 				v-for="category in categories"
 				:key="category.id"
-				:products_data="category.products"
-				:category_name="category.name"
+				:category_data="category"
 			/>
 		</section>
 		<!-- Loading Load = false -->
@@ -33,7 +32,12 @@ export default {
 		}
 	},
 	mounted() {
-		this.categories = this.categories_data
+		this.categories = this.categories_data.map(category => {
+			return {
+				...category,
+				products: category.products.slice(0, 4)
+			}
+		})
 		this.load = true
 	},
 	methods: {}

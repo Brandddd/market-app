@@ -13,9 +13,16 @@ class CategoryController extends Controller
 		return view('index', compact('categories'));
 	}
 
+	// -------------------- Read --------------------
 	public function getAllCategories()
 	{
 		$categories = Category::get();
 		return response()->json(['categories' => $categories], 200);
+	}
+
+	public function getAllProductsByCategory(Category $category)
+	{
+		$categoryWithProducts = $category->load('Products');
+		return view('categories.category-products', compact('categoryWithProducts'));
 	}
 }

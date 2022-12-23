@@ -1,9 +1,7 @@
 <template>
-	<a :href="`/Categories/GetAllProductsByCategory/${category_data.id}`" class="link">
-		<h2>
-			{{ category_data.name }}
-		</h2>
-	</a>
+	<h2>
+		{{ category_data.name }}
+	</h2>
 	<div class="mb-4 py-4 d-flex flex-wrap justify-content-evenly border border-dark rounded">
 		<div
 			class="card text-center mx-3 my-3"
@@ -12,7 +10,7 @@
 			:key="product.id"
 		>
 			<div v-if="product.image">
-				<img :src="`storage/images/${product.image}`" class="card-img-top" alt="Producto" />
+				<img :src="`/storage/images/${product.image}`" class="card-img-top" alt="Producto" />
 			</div>
 			<div v-else>
 				<img
@@ -33,12 +31,11 @@
 </template>
 
 <script>
-import CategoryProduct from './CategoryWithProduct.vue'
 export default {
 	props: ['category_data'],
-	components: {
-		CategoryProduct
-	},
+	mounted() {
+		console.log(this.category_data)
+	}
 }
 </script>
 

@@ -109,9 +109,6 @@ export default {
 	created() {
 		this.index()
 	},
-	mounted() {
-		console.log(this.user_data)
-	},
 	methods: {
 		index() {
 			this.setUser()
