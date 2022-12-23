@@ -109,12 +109,15 @@ export default {
 	created() {
 		this.index()
 	},
+	mounted() {
+		console.log(this.user_data)
+	},
 	methods: {
 		index() {
 			this.setUser()
 		},
 		setUser() {
-			if (!this.user) return
+			if (!this.user_data) return
 			this.user = { ...this.user_data }
 			this.is_create = false
 		},
@@ -135,7 +138,7 @@ export default {
 				if (this.is_create) {
 					await axios.post('Users/CreateAnUser', user)
 				} else {
-					await axios.post(`Users/UpdateAnUser/${this.user.number_id}`, user)
+					await axios.post(`Users/UpdateAnUser/${this.user.id}`, user)
 				}
 				swal.fire({
 					icon: 'success',
