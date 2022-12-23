@@ -25,6 +25,12 @@ class UserController extends Controller
 		return response()->json(['users' => $users], 200);
 	}
 
+	public function showTableUsers()
+	{
+		$users = $this->getAllUsers()->original['users'];
+		return view('users.index', compact('users'));
+	}
+
 	public function getAnUser(User $user)
 	{
 		return response()->json(['user' => $user], 200);

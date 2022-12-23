@@ -1,10 +1,5 @@
 <?php
 
-use App\Http\Controllers\Auth\ConfirmPasswordController;
-use App\Http\Controllers\Auth\ForgotPasswordController;
-use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\Auth\ResetPasswordController;
-use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SaleController;
@@ -28,7 +23,11 @@ Route::group(['prefix' => 'Products', 'controller' => ProductController::class],
 // -------------------- WEB Routes for Users --------------------
 Route::group(['prefix' => 'Users', 'controller' => UserController::class], function ()
 {
-	Route::get('/', 'getAllUsers')->name('users');
+	Route::get('/', 'showTableUsers')->name('users');
+	Route::get('/GetAnUser/{user}', 'getAnUser');
+	Route::post('/CreateAnUser', 'createAnUser');
+	Route::post('/UpdateAnUser/{user}', 'updateAnUser');
+	Route::delete('/DeleteAnUser/{user}', 'deleteAnUser');
 });
 
 // -------------------- WEB Routes for Sales --------------------

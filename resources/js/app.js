@@ -5,11 +5,13 @@ import vSelect from 'vue-select'
 // ----- Component register -----
 import ProductView from './components/Index.vue'
 import ProductsList from './components/Products/Index.vue'
+import UsersList from './components/Users/Index.vue'
 
 const app = createApp({
 	components: {
 		ProductView,
-		ProductsList
+		ProductsList,
+		UsersList
 	}
 })
 
