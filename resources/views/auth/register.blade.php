@@ -3,7 +3,7 @@
         <div class="row justify-content-center">
             <div class="col-md-5">
                 <div class="card">
-                    <div class="card-header">{{ __('Register') }}</div>
+                    <div class="card-header text-center"><h4><strong>Registro</strong></h4></div>
 
                     <div class="card-body">
                         <form method="POST" action="{{ route('register') }}">
@@ -12,7 +12,7 @@
 							{{-- ID --}}
                             <div class="row mb-3">
                                 <label for="number_id"
-                                    class="col-md-4 col-form-label text-md-end">{{ __('ID') }}</label>
+                                    class="col-md-4 col-form-label text-md-end">Identificación</label>
 
                                 <div class="col-md-6">
                                     <input id="number_id" type="number"
@@ -30,7 +30,7 @@
 							{{-- Name --}}
                             <div class="row mb-3">
                                 <label for="name"
-                                    class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
+                                    class="col-md-4 col-form-label text-md-end">Nombre</label>
 
                                 <div class="col-md-6">
                                     <input id="name" type="text"
@@ -48,7 +48,7 @@
 							{{-- Lastname --}}
                             <div class="row mb-3">
                                 <label for="last_name"
-                                    class="col-md-4 col-form-label text-md-end">{{ __('Lastname') }}</label>
+                                    class="col-md-4 col-form-label text-md-end">Apellido</label>
 
                                 <div class="col-md-6">
                                     <input id="last_name" type="text"
@@ -66,7 +66,7 @@
 							{{-- Email --}}
                             <div class="row mb-3">
                                 <label for="email"
-                                    class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
+                                    class="col-md-4 col-form-label text-md-end">Correo Electrónico</label>
 
                                 <div class="col-md-6">
                                     <input id="email" type="email"
@@ -84,7 +84,7 @@
 							{{-- Password --}}
                             <div class="row mb-3">
                                 <label for="password"
-                                    class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
+                                    class="col-md-4 col-form-label text-md-end">Contraseña</label>
 
                                 <div class="col-md-6">
                                     <input id="password" type="password"
@@ -102,7 +102,7 @@
 							{{-- Password Confirmation --}}
                             <div class="row mb-3">
                                 <label for="password-confirm"
-                                    class="col-md-4 col-form-label text-md-end">{{ __('Confirm Password') }}</label>
+                                    class="col-md-4 col-form-label text-md-end">Confirmar contraseña</label>
 
                                 <div class="col-md-6">
                                     <input id="password-confirm" type="password" class="form-control"
