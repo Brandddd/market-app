@@ -33,7 +33,7 @@ Route::group(['prefix' => 'Users', 'controller' => UserController::class], funct
 // -------------------- WEB Routes for Sales --------------------
 Route::group(['prefix' => 'Sales', 'controller' => SaleController::class], function ()
 {
-	Route::get('/', '')->name('sales');
+	Route::get('/ShoppingCart', 'showShoppingCart')->name('shopping_cart');
 });
 
 // -------------------- WEB Routes for Categories --------------------

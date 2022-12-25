@@ -7,13 +7,15 @@ import ProductView from './components/Index.vue'
 import ProductsList from './components/Products/Index.vue'
 import UsersList from './components/Users/Index.vue'
 import CategoryProducts from './components/Categories/CategoryWithProduct.vue'
+import ShoppingCartPreview from './components/Sales/ShoppingCartPreview.vue'
 
 const app = createApp({
 	components: {
 		ProductView,
 		ProductsList,
 		UsersList,
-		CategoryProducts
+		CategoryProducts,
+		ShoppingCartPreview
 	}
 })
 

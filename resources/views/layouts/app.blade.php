@@ -79,9 +79,6 @@
                 </div>
             </div>
         </nav>
-
-        {{-- Llamar componentes Vue acá --}}
-
         <main class="py-5">
             @yield('content')
         </main>
