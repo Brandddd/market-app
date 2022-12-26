@@ -27,11 +27,8 @@
 				</h5>
 				<p class="card-text">$ {{ product.price }}</p>
 				<div class="row d-flex justify-content-between align-items-center">
-					<button type="button" class="btn btn-primary btn-block btn-lg">
-						Ver producto
-					</button>
 					<a type="button" class="btn btn-success btn-block btn-lg mt-2" :href="`/Sales/AddProductToCart/${product.id}`">
-						Añadir al carrito
+						Ver producto
 					</a>
 				</div>
 			</div>
