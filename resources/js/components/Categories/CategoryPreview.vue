@@ -26,7 +26,14 @@
 					<strong>{{ product.name }}</strong>
 				</h5>
 				<p class="card-text">$ {{ product.price }}</p>
-				<a href="#" class="btn btn-primary">Ver producto</a>
+				<div class="row d-flex justify-content-between align-items-center">
+					<button type="button" class="btn btn-primary btn-block btn-lg">
+						Ver producto
+					</button>
+					<a type="button" class="btn btn-success btn-block btn-lg mt-2" :href="`/Sales/AddProductToCart/${product.id}`">
+						Añadir al carrito
+					</a>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -38,7 +45,7 @@ export default {
 	props: ['category_data'],
 	components: {
 		CategoryProduct
-	},
+	}
 }
 </script>
 

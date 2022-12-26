@@ -34,6 +34,7 @@ Route::group(['prefix' => 'Users', 'controller' => UserController::class], funct
 Route::group(['prefix' => 'Sales', 'controller' => SaleController::class], function ()
 {
 	Route::get('/ShoppingCart', 'showShoppingCart')->name('shopping_cart');
+	Route::get('/AddProductToCart/{product}', 'addProductToCart');
 });
 
 // -------------------- WEB Routes for Categories --------------------
