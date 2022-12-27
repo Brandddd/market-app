@@ -37,12 +37,8 @@
 </template>
 
 <script>
-import CategoryProduct from './CategoryWithProduct.vue'
 export default {
 	props: ['category_data'],
-	components: {
-		CategoryProduct
-	}
 }
 </script>
 

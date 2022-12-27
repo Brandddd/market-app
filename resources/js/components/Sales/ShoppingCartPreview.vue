@@ -114,24 +114,28 @@ export default {
 	},
 	methods: {
 		addItem() {
-			localStorage.setItem('products', JSON.stringify(this.product_data))
-			if (!localStorage.getItem('cart')) {
-				localStorage.setItem('cart', '[]')
+			if (this.customer_id) {
+				localStorage.setItem('products', JSON.stringify(this.product_data))
+				if (!localStorage.getItem(this.customer_id)) {
+					localStorage.setItem(this.customer_id, '[]')
+				}
+			} else {
+				localStorage.removeItem(this.customer_id)
 			}
 		},
 		addItemToCart(productId) {
 			let product = JSON.parse(localStorage.getItem('products'))
-			let cart = JSON.parse(localStorage.getItem('cart'))
+			let customer_cart = JSON.parse(localStorage.getItem(this.customer_id))
 
-			if (cart.length == 0) {
-				cart.push(product)
+			if (customer_cart.length == 0) {
+				customer_cart.push(product)
 			} else {
-				let response = cart.find(element => element.id == productId)
+				let response = customer_cart.find(item => item.id == productId)
 				if (response == undefined) {
-					cart.push(product)
+					customer_cart.push(product)
 				}
 			}
-			localStorage.setItem('cart', JSON.stringify(cart))
+			localStorage.setItem(this.customer_id, JSON.stringify(customer_cart))
 		}
 	}
 }
