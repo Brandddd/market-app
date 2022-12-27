@@ -54,7 +54,7 @@
                             {{-- @endrole  --}}
 
                             {{-- Carrito --}}
-                            <a class="dropdown-item" href="{{ route('shopping_cart') }}">
+                            <a class="dropdown-item" href="{{ route('list-cart') }}">
                                 Carrito de compras
                             </a>
 

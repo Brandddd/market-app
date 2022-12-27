@@ -11,7 +11,7 @@ class SaleController extends Controller
 	// -------------------- Show view --------------------
 	public function showShoppingCart()
 	{
-		return view('sales.shopping-cart');
+		return view('sales.shopping-cart-list');
 	}
 
 	// -------------------- Add Product to Cart --------------------

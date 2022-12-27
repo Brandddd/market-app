@@ -124,18 +124,22 @@ export default {
 			}
 		},
 		addItemToCart(productId) {
+			if (!this.customer_id) return (window.location = '/login')
+
 			let product = JSON.parse(localStorage.getItem('products'))
 			let customer_cart = JSON.parse(localStorage.getItem(this.customer_id))
 
-			if (customer_cart.length == 0) {
-				customer_cart.push(product)
-			} else {
-				let response = customer_cart.find(item => item.id == productId)
-				if (response == undefined) {
-					customer_cart.push(product)
-				}
+			if (customer_cart.length == 0) customer_cart.push(product)
+			else {
+				let cart_item = customer_cart.find(item => item.id == productId)
+				if (cart_item == undefined) customer_cart.push(product)
 			}
 			localStorage.setItem(this.customer_id, JSON.stringify(customer_cart))
+			swal.fire({
+				icon: 'success',
+				title: 'Hecho!',
+				text: 'Añadido al carrito exitosamente.'
+			})
 		}
 	}
 }
@@ -143,6 +147,6 @@ export default {
 
 <style scoped>
 .bg-beige {
-	background-color: blanchedalmond;
+	background-color: #eee;
 }
 </style>
