@@ -89,7 +89,7 @@
 								<button
 									type="button"
 									class="btn btn-success btn-block btn-lg"
-									@click="addItem()"
+									@click="addItemToCart(product_data.id)"
 								>
 									Añadir al carrito
 								</button>
@@ -105,53 +105,33 @@
 <script>
 export default {
 	props: ['product_data', 'customer_id'],
+	components: {},
 	data() {
-		return {
-			product: {},
-			products: []
-		}
+		return {}
 	},
-	created() {
-		this.product = this.product_data
+	mounted() {
+		this.addItem()
 	},
 	methods: {
 		addItem() {
-			const get_cart = this.getItems()
-			if (localStorage.getItem('products')) {
-				// Añadiendo productos al arreglo correspondiente
-				// Añade un producto al array con push
-				get_cart.push({ ...this.product })
-				this.deleteItems()
-				localStorage.setItem(
-					'products', // Nombre key string name
-					JSON.stringify({
-						[this.customer_id]: [get_cart]
-					})
-				)
-			} else {
-				localStorage.setItem(
-					'products',
-					// Asignado id del cliente a un array de productos
-					JSON.stringify({
-						[this.customer_id]: [this.product]
-					})
-				)
+			localStorage.setItem('products', JSON.stringify(this.product_data))
+			if (!localStorage.getItem('cart')) {
+				localStorage.setItem('cart', '[]')
 			}
 		},
-		deleteItems() {
-			localStorage.removeItem('products')
-		},
-		getItems() {
-			if (localStorage.getItem('products')) {
-				const cart = JSON.parse(localStorage.getItem('products'))
-				// Crea un nuevo array con la información de los productos en el carrito
-				const cart_products = cart[`${this.customer_id}`].map(
-					products_in_cart => products_in_cart
-				)
-				return cart_products
+		addItemToCart(productId) {
+			let product = JSON.parse(localStorage.getItem('products'))
+			let cart = JSON.parse(localStorage.getItem('cart'))
+
+			if (cart.length == 0) {
+				cart.push(product)
 			} else {
-				console.error('No hay nada en el local Storage')
+				let response = cart.find(element => element.id == productId)
+				if (response == undefined) {
+					cart.push(product)
+				}
 			}
+			localStorage.setItem('cart', JSON.stringify(cart))
 		}
 	}
 }
