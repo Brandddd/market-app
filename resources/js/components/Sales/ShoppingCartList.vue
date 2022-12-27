@@ -1,4 +1,3 @@
-<!-- eslint-disable no-undef -->
 <template>
 	<section class="h-100 bg-beige">
 		<div class="container h-100 py-5">
@@ -34,8 +33,12 @@
 									<div class="col-md-3 col-lg-3 col-xl-3">
 										<p class="lead fw-normal mb-2">{{ product.name }}</p>
 										<p>
-											<span class="text-muted">Descripción: </span>M
-											<span class="text-muted">{{ product.description }}</span>Grey
+											<span class="text-muted"
+												><strong>Descripción: </strong></span
+											>
+											<span class="text-muted d-block">{{
+												product.description
+											}}</span>
 										</p>
 									</div>
 									<div class="col-md-3 col-lg-3 col-xl-2 d-flex">
@@ -47,12 +50,12 @@
 										</button>
 
 										<input
-											id="form1"
+											id="quantity"
 											min="0"
 											name="quantity"
 											value="1"
 											type="number"
-											class="form-control form-control-sm"
+											class="form-control form-control-sm my-4"
 										/>
 
 										<button
@@ -63,10 +66,12 @@
 										</button>
 									</div>
 									<div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-										<h5 class="mb-0">{{ product.price }}</h5>
+										<h5 class="mb-0">$ {{ product.price }}</h5>
 									</div>
 									<div class="col-md-1 col-lg-1 col-xl-1 text-end">
-										<a href="#!" class="text-danger"
+										<a
+											@click="deleteItemFromCart(product.id)"
+											class="btn text-danger"
 											><i class="fas fa-trash fa-lg"></i
 										></a>
 									</div>
@@ -91,6 +96,7 @@
 </template>
 
 <script>
+import swal from 'sweetalert2'
 export default {
 	props: ['customer'],
 	created() {
@@ -98,7 +104,7 @@ export default {
 	},
 	data() {
 		return {
-			cart_products: []
+			cart_products: [],
 		}
 	},
 	methods: {
@@ -115,7 +121,11 @@ export default {
 				})
 				return (window.location = '/')
 			}
-		}
+		},
+		deleteItemFromCart(producId) {
+			this.cart_products = this.cart_products.filter(item => item.id != producId)
+			localStorage.setItem(this.customer.id, JSON.stringify(this.cart_products))
+		},
 	}
 }
 </script>

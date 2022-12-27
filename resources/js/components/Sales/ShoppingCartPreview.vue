@@ -18,7 +18,7 @@
 									<div v-if="product_data.image">
 										<img
 											:src="`/storage/images/${product_data.image}`"
-											class="card-img-top"
+											class="img-fluid rounded-3"
 											alt="Producto"
 										/>
 									</div>
@@ -46,30 +46,7 @@
 										}}</span>
 									</p>
 								</div>
-								<div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-									<button
-										class="btn btn-link px-2"
-										onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
-									>
-										<i class="fas fa-minus"></i>
-									</button>
 
-									<input
-										id="form1"
-										min="0"
-										name="quantity"
-										value="1"
-										type="number"
-										class="form-control form-control-sm"
-									/>
-
-									<button
-										class="btn btn-link px-2"
-										onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
-									>
-										<i class="fas fa-plus"></i>
-									</button>
-								</div>
 								<!-- Precio Producto -->
 								<div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
 									<h5 class="mb-0">$ {{ product_data.price }}</h5>
@@ -103,6 +80,8 @@
 </template>
 
 <script>
+import swal from 'sweetalert2'
+
 export default {
 	props: ['product_data', 'customer_id'],
 	components: {},

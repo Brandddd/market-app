@@ -43,9 +43,6 @@
 <script>
 export default {
 	props: ['category_data'],
-	mounted() {
-		console.log(this.category_data)
-	}
 }
 </script>
 
