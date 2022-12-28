@@ -7,6 +7,7 @@ use App\Http\Requests\Product\UpdateProductRequest;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Yajra\DataTables\Facades\DataTables;
 
 class ProductController extends Controller
 {
@@ -39,6 +40,12 @@ class ProductController extends Controller
 	{
 		return response()->json(['product' => $product], 200);
 	}
+
+	/* public function getAllProductsForDataTable()
+	{
+		$products = Product::with('Category');
+		return DataTables::of($products)->make();
+	} */
 
 	// ---------- Update ----------
 	public function updateAProduct(Request $request, Product $product)
