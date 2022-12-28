@@ -12,13 +12,21 @@
 			:key="product.id"
 		>
 			<div v-if="product.image">
-				<img :src="`storage/images/${product.image}`" class="card-img-top" alt="Producto" />
+				<img
+					:src="`storage/images/${product.image}`"
+					width="400"
+					height="300"
+					class="card-img-top"
+					alt="Producto"
+				/>
 			</div>
 			<div v-else>
 				<img
 					src="https://api.lorem.space/image/house?w=150&h=150"
 					class="card-img-top"
 					alt="Producto"
+					width="400"
+					height="300"
 				/>
 			</div>
 			<div class="card-body">
@@ -27,7 +35,11 @@
 				</h5>
 				<p class="card-text">$ {{ product.price }}</p>
 				<div class="row d-flex justify-content-between align-items-center">
-					<a type="button" class="btn btn-success btn-block btn-lg mt-2" :href="`/Sales/AddProductToCart/${product.id}`">
+					<a
+						type="button"
+						class="btn btn-success btn-block btn-lg mt-2"
+						:href="`/Sales/AddProductToCart/${product.id}`"
+					>
 						Ver producto
 					</a>
 				</div>
@@ -38,7 +50,7 @@
 
 <script>
 export default {
-	props: ['category_data'],
+	props: ['category_data']
 }
 </script>
 

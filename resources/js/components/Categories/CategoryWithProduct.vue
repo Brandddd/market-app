@@ -15,6 +15,8 @@
 						:src="`/storage/images/${product.image}`"
 						class="card-img-top"
 						alt="Producto"
+						width="400"
+						height="300"
 					/>
 				</div>
 				<div v-else>
@@ -22,6 +24,8 @@
 						src="https://api.lorem.space/image/house?w=150&h=150"
 						class="card-img-top"
 						alt="Producto"
+						width="400"
+						height="300"
 					/>
 				</div>
 				<div class="card-body">
@@ -30,7 +34,9 @@
 					</h5>
 					<p class="card-text">$ {{ product.price }}</p>
 					<div class="row d-flex justify-content-between align-items-center">
-						<a :href="`/Sales/AddProductToCart/${product.id}`" class="btn btn-success btn-block btn-lg mt-2"
+						<a
+							:href="`/Sales/AddProductToCart/${product.id}`"
+							class="btn btn-success btn-block btn-lg mt-2"
 							>Ver producto</a
 						>
 					</div>
@@ -42,7 +48,7 @@
 
 <script>
 export default {
-	props: ['category_data'],
+	props: ['category_data']
 }
 </script>
 
