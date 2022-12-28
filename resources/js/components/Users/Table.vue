@@ -16,9 +16,7 @@
 				<td>{{ user.last_name }}</td>
 				<td>{{ user.email }}</td>
 				<td>
-					<button class="btn btn-warning me-2" @click="getUser(user.id)">
-						Editar
-					</button>
+					<button class="btn btn-warning me-2" @click="getUser(user.id)">Editar</button>
 					<button class="btn btn-danger" @click="deleteUser(user)">Eliminar</button>
 				</td>
 			</tr>
@@ -43,6 +41,11 @@ export default {
 	methods: {
 		index() {
 			this.users = { ...this.users_data }
+			this.mountDataTable()
+		},
+		mountDataTable() {
+			// eslint-disable-next-line no-undef
+			setTimeout(() => $('#userTable').DataTable(), 200)
 		},
 		async getUser(user_id) {
 			try {
@@ -78,5 +81,4 @@ export default {
 </script>
 
 <style>
-
 </style>

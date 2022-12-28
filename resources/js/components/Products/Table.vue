@@ -27,6 +27,9 @@
 </template>
 
 <script>
+import axios from 'axios'
+import swal from 'sweetalert2'
+
 export default {
 	props: ['products_data'],
 	data() {
@@ -40,6 +43,11 @@ export default {
 	methods: {
 		index() {
 			this.products = { ...this.products_data }
+			this.mountDataTable()
+		},
+		mountDataTable() {
+			// eslint-disable-next-line no-undef
+			setTimeout(() => $('#productTable').DataTable(), 200)
 		},
 		async getProduct(product_id) {
 			try {
