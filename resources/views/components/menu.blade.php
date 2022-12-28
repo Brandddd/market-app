@@ -41,17 +41,17 @@
 
                         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
 
-                            {{-- @role('admin') --}}
-                            {{-- Productos --}}
-                            <a class="dropdown-item" href="{{ route('products') }}">
-                                Gestión de productos
-                            </a>
+                            @role('admin')
+                                {{-- Productos --}}
+                                <a class="dropdown-item" href="{{ route('products') }}">
+                                    Gestión de productos
+                                </a>
 
-                            {{-- Usuarios --}}
-                            <a class="dropdown-item" href="{{ route('users') }}">
-                                Gestión de usuarios
-                            </a>
-                            {{-- @endrole  --}}
+                                {{-- Usuarios --}}
+                                <a class="dropdown-item" href="{{ route('users') }}">
+                                    Gestión de usuarios
+                                </a>
+                            @endrole
 
                             {{-- Carrito --}}
                             <a class="dropdown-item" href="{{ route('list-cart') }}">

@@ -36,6 +36,7 @@ export default {
 	data() {
 		return {
 			users: [],
+			user_role: [],
 			load: false,
 			load_modal: false,
 			modal: null,
@@ -53,6 +54,7 @@ export default {
 		openModal() {
 			this.load_modal = true
 			setTimeout(() => {
+				// eslint-disable-next-line no-undef
 				this.modal = new bootstrap.Modal(document.getElementById('user_modal'), {
 					keyboard: false
 				})
@@ -69,6 +71,7 @@ export default {
 			this.getUsers()
 		},
 		editUser(user) {
+			// llegan roles bien
 			this.user = user
 			this.openModal()
 		}

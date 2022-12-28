@@ -55,6 +55,17 @@
 							>
 						</div>
 						<div class="mb-3">
+							<label for="role" class="form-label">Role</label>
+							<v-select
+								id="role"
+								:options="roles"
+								v-model="user.roles"
+								:reduce="role => role.id"
+								label="name"
+								:clearable="false"
+							></v-select>
+						</div>
+						<div class="mb-3">
 							<label for="password" class="form-label">Contraseña</label>
 							<input
 								class="form-control"
@@ -107,6 +118,7 @@ export default {
 		return {
 			is_create: true,
 			user: {},
+			roles: []
 		}
 	},
 	created() {
@@ -114,6 +126,7 @@ export default {
 	},
 	methods: {
 		index() {
+			this.getAllRoles()
 			this.setUser()
 		},
 		setUser() {
@@ -130,11 +143,18 @@ export default {
 			form_data.append('email', this.user.email)
 			form_data.append('password', this.user.password)
 			form_data.append('password_confirmation', this.user.password_confirmation)
+			form_data.append('role', this.user.roles)
 			return form_data
+		},
+		async getAllRoles() {
+			const { data } = await axios.get('Users/GetAllRoles')
+			this.roles = data.roles
+			console.log(this.roles);
 		},
 		async manageUser() {
 			try {
 				const user = this.loadFormData()
+				console.log('estoy aca',user);
 				if (this.is_create) {
 					await axios.post('Users/CreateAnUser', user)
 				} else {

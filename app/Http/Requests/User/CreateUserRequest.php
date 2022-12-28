@@ -20,6 +20,7 @@ class CreateUserRequest extends FormRequest
 			'last_name' => ['required', 'string'],
 			'email' => ['required', 'email', 'unique:users,email'],
 			'password' => ['required', 'string', 'min:8', 'confirmed'],
+			'role' => ['required'],
 		];
 	}
 
@@ -45,6 +46,8 @@ class CreateUserRequest extends FormRequest
 			'password.string' => 'Debe de ser valida.',
 			'password.min' => 'La contraseña es muy corta.',
 			'password.confirmed' => 'Las contraseñas no coinciden.',
+
+			'role.required' => 'El role del usuario es requerido.'
 		];
 	}
 }

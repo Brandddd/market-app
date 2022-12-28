@@ -20,6 +20,7 @@ class UpdateUserRequest extends FormRequest
 			'last_name' => ['required', 'string'],
 			'email' => ['required', 'email', "unique:users,email,{$this->user->id}"],
 			'password' => ['required', 'string', 'min:8', 'confirmed'],
+			'role' => ['required'],
 		];
 	}
 
@@ -45,6 +46,8 @@ class UpdateUserRequest extends FormRequest
 			'password.string' => 'Debe de ser valida.',
 			'password.min' => 'La contraseña es muy corta.',
 			'password.confirmed' => 'Las contraseñas no coinciden.',
+
+			'role.required' => 'El rol del usuario es requerido'
 		];
 	}
 }
