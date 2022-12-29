@@ -41,32 +41,22 @@
 											}}</span>
 										</p>
 									</div>
-									<div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-										<button
-											class="btn btn-link px-2"
-											onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
-										>
-											<i class="fas fa-minus"></i>
-										</button>
-
-										<input
-											id="quantity"
-											min="0"
-											name="quantity"
-											value="1"
-											type="number"
-											class="form-control form-control-sm my-4"
-										/>
-
-										<button
-											class="btn btn-link px-2"
-											onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
-										>
-											<i class="fas fa-plus"></i>
-										</button>
-									</div>
+									<!-- Quantity -->
 									<div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-										<h5 class="mb-0">$ {{ product.price }}</h5>
+										<h5 class="my-1">
+											<strong>Catidad: </strong>{{ product.quantity }}
+										</h5>
+										<h5 class="my-1">
+											<strong>Precio: </strong>${{ product.price }}
+										</h5>
+									</div>
+
+									<div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
+										<h5 class="mb-0">
+											<strong>Precio total: </strong>${{
+												product.total_price
+											}}
+										</h5>
 									</div>
 									<div class="col-md-1 col-lg-1 col-xl-1 text-end">
 										<a
@@ -83,6 +73,11 @@
 					<div class="card">
 						<div class="card-body">
 							<div class="row d-flex justify-content-between align-items-center">
+								<div>
+									<h5 class="my-3 text-center">
+										<strong>Total: </strong>$ {{ this.total_price_to_pay }}
+									</h5>
+								</div>
 								<button type="button" class="btn btn-success btn-block btn-lg">
 									Proceder al pago
 								</button>
@@ -105,11 +100,13 @@ export default {
 	data() {
 		return {
 			cart_products: [],
+			total_price_to_pay: 0
 		}
 	},
 	methods: {
 		index() {
 			this.getLocalItems()
+			this.totalPrice()
 		},
 		async getLocalItems() {
 			this.cart_products = JSON.parse(localStorage.getItem(this.customer.id))
@@ -122,10 +119,15 @@ export default {
 				return (window.location = '/')
 			}
 		},
-		deleteItemFromCart(producId) {
-			this.cart_products = this.cart_products.filter(item => item.id != producId)
+		deleteItemFromCart(productId) {
+			this.cart_products = this.cart_products.filter(item => item.id != productId)
 			localStorage.setItem(this.customer.id, JSON.stringify(this.cart_products))
+			location.reload()
 		},
+		totalPrice() {
+			for (let total of this.cart_products)
+				this.total_price_to_pay = this.total_price_to_pay + total.total_price
+		}
 	}
 }
 </script>

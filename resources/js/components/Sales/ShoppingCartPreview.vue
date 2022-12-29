@@ -47,9 +47,24 @@
 									</p>
 								</div>
 
+								<!-- Cantidad -->
+								<div class="col-md-3 col-lg-3 col-xl-2 d-flex">
+									<input
+										id="quantity"
+										min="1"
+										name="quantity"
+										v-model.number="quantity"
+										type="number"
+										class="form-control form-control-sm my-4"
+									/>
+								</div>
 								<!-- Precio Producto -->
-								<div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-									<h5 class="mb-0">$ {{ product_data.price }}</h5>
+								<div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1 text-center">
+									<h5 class="mb-4">
+										<strong>Precio: </strong> ${{
+											product_data.price * this.quantity
+										}}
+									</h5>
 								</div>
 								<div class="col-md-1 col-lg-1 col-xl-1 text-center">
 									<button class="btn btn-danger" onclick="history.go(-1);">
@@ -84,11 +99,12 @@ import swal from 'sweetalert2'
 
 export default {
 	props: ['product_data', 'customer_id'],
-	components: {},
 	data() {
-		return {}
+		return {
+			quantity: 1
+		}
 	},
-	mounted() {
+	created() {
 		this.addItem()
 	},
 	methods: {
@@ -106,6 +122,9 @@ export default {
 			if (!this.customer_id) return (window.location = '/login')
 
 			let product = JSON.parse(localStorage.getItem('products'))
+			let product_quantity = { quantity: this.quantity }
+			let total_price = { total_price: this.quantity * product.price }
+			Object.assign(product, product_quantity, total_price)
 			let customer_cart = JSON.parse(localStorage.getItem(this.customer_id))
 
 			if (customer_cart.length == 0) customer_cart.push(product)
@@ -119,7 +138,7 @@ export default {
 				title: 'Hecho!',
 				text: 'Añadido al carrito exitosamente.'
 			})
-		}
+		},
 	}
 }
 </script>
