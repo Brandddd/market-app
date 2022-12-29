@@ -149,12 +149,10 @@ export default {
 		async getAllRoles() {
 			const { data } = await axios.get('Users/GetAllRoles')
 			this.roles = data.roles
-			console.log(this.roles);
 		},
 		async manageUser() {
 			try {
 				const user = this.loadFormData()
-				console.log('estoy aca',user);
 				if (this.is_create) {
 					await axios.post('Users/CreateAnUser', user)
 				} else {

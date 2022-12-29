@@ -63,7 +63,6 @@ Route::group(['prefix' => 'test', 'controller' => UserController::class], functi
 		else $user->assignRole('user');   // Asignacion user role
 	} */
 	// 1. Asi creamos los roles, se accede a la ruta y se crea el rol en base de datos
-	/* Role::create(['name' => 'admin']); */
-	/* Role::create(['name' => 'user']); */
-	Route::get('/GetAllRoles', 'getAllRoles');
+	/* Role::create(['name' => 'admin']);
+	Role::create(['name' => 'user']); */
 });

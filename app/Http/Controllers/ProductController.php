@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Produc\CreateProductRequest;
+use App\Http\Requests\Product\CreateProductRequest;
 use App\Http\Requests\Product\UpdateProductRequest;
 use App\Models\Product;
-use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-use Yajra\DataTables\Facades\DataTables;
+/* use Illuminate\Http\Request; */
+/* use Yajra\DataTables\Facades\DataTables; */
 
 class ProductController extends Controller
 {
@@ -21,7 +21,7 @@ class ProductController extends Controller
 
 	// ---------- CRUD methods ----------
     // ---------- Create ----------
-	public function createAProduct(Request $request)
+	public function createAProduct(CreateProductRequest $request)
 	{
 		$product = new Product($request->all());
 		$this->uploadImage($request, $product);
@@ -48,7 +48,7 @@ class ProductController extends Controller
 	} */
 
 	// ---------- Update ----------
-	public function updateAProduct(Request $request, Product $product)
+	public function updateAProduct(UpdateProductRequest $request, Product $product)
 	{
 		$request_data = $request->all();
 		$this->uploadImage($request, $product);
