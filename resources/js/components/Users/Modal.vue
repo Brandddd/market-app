@@ -29,12 +29,7 @@
 						</div>
 						<div class="mb-3">
 							<label for="name" class="form-label">Nombre</label>
-							<input
-								type="text"
-								class="form-control"
-								id="name"
-								v-model="user.name"
-							/>
+							<input type="text" class="form-control" id="name" v-model="user.name" />
 						</div>
 						<div class="mb-3">
 							<label for="last_name" class="form-label">Apellido</label>
@@ -52,7 +47,7 @@
 								class="form-control"
 								id="email"
 								v-model="user.email"
-							>
+							/>
 						</div>
 						<div class="mb-3">
 							<label for="role" class="form-label">Role</label>
@@ -76,7 +71,9 @@
 							/>
 						</div>
 						<div class="mb-3">
-							<label for="password_confirmation" class="form-label">Confirmar contraseña</label>
+							<label for="password_confirmation" class="form-label"
+								>Confirmar contraseña</label
+							>
 							<input
 								class="form-control"
 								id="password_confirmation"
@@ -118,7 +115,8 @@ export default {
 		return {
 			is_create: true,
 			user: {},
-			roles: []
+			roles: [],
+			error: []
 		}
 	},
 	created() {
@@ -158,20 +156,18 @@ export default {
 				} else {
 					await axios.post(`Users/UpdateAnUser/${this.user.id}`, user)
 				}
-				swal.fire({
+				await swal.fire({
 					icon: 'success',
 					title: 'Felicidades!',
-					text: 'Usuario creado.'
+					text: 'Usuario actualizado correctamente.'
 				})
-
 				this.$parent.closeModal()
 				location.reload()
 			} catch (error) {
-				console.error(error)
-				swal.fire({
+				await swal.fire({
 					icon: 'error',
-					title: 'Oops...',
-					text: 'Algo salió mal!'
+					title: 'Oops... Ha ocurrido un error',
+					text: error.response.data.message
 				})
 			}
 		}

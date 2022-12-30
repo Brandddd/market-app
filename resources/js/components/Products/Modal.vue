@@ -99,6 +99,9 @@
 </template>
 
 <script>
+import swal from 'sweetalert2'
+import axios from 'axios'
+
 export default {
 	props: ['product_data'],
 	data() {
@@ -149,20 +152,18 @@ export default {
 				} else {
 					await axios.post(`Products/UpdateAProduct/${this.product.id}`, product)
 				}
-				swal.fire({
+				await swal.fire({
 					icon: 'success',
 					title: 'Felicidades!',
 					text: 'Producto almacenado.'
 				})
-
 				this.$parent.closeModal()
 				location.reload()
 			} catch (error) {
-				console.error(error)
-				swal.fire({
+				await swal.fire({
 					icon: 'error',
-					title: 'Oops...',
-					text: 'Algo salió mal!'
+					title: 'Oops... Ha ocurrido un error',
+					text: error.response.data.message
 				})
 			}
 		}
