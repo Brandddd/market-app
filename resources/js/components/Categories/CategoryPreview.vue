@@ -1,12 +1,12 @@
 <template>
 	<a :href="`/Categories/GetAllProductsByCategory/${category_data.id}`" class="link">
-		<h2>
-			{{ category_data.name }}
+		<h2 class="text-center">
+			Categoría: <strong>{{ category_data.name }}</strong>
 		</h2>
 	</a>
-	<div class="mb-4 py-4 d-flex flex-wrap justify-content-evenly border border-dark rounded">
+	<div class="mb-4 py-4 d-flex flex-wrap justify-content-evenly border rounded bg-white shadow-sm">
 		<div
-			class="card text-center mx-3 my-3"
+			class="card shadow text-center mx-3 my-3 ov-card-grid"
 			style="width: 18rem"
 			v-for="product in category_data.products"
 			:key="product.id"

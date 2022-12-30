@@ -18,16 +18,19 @@
         integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+	{{-- Background - Colors --}}
+	<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-highway.css">
+
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
 
-<body>
+<body class="bg-light">
     <x-menu />
 
     {{-- - Content - --}}
     <main id="app">
-        <div class="container mt-5">
+        <div class="container mt-5 ">
             <x-alerts />
         </div>
         {{ $slot }}

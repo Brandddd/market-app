@@ -1,16 +1,16 @@
 <template>
 	<section class="h-100">
-		<div class="container h-100 py-5 rounded border bg-beige">
+		<div class="container h-100 py-5 rounded border bg-white shadow-lg">
 			<div class="row d-flex justify-content-center align-items-center h-100">
 				<div class="col-10">
-					<div class="d-flex justify-content-between align-items-center mb-4">
+					<div>
 						<!-- Nombre del producto -->
-						<h2 class="fw-normal mb-0 text-black">
+						<h2 class="mb-4 text-black text-center">
 							<strong>Producto: </strong>{{ product_data.name }}
 						</h2>
 					</div>
 
-					<div class="card rounded-3 mb-4">
+					<div class="card rounded-3 mb-4 shadow">
 						<div class="card-body p-4">
 							<div class="row d-flex justify-content-between align-items-center">
 								<div class="col-md-2 col-lg-2 col-xl-2">
@@ -75,7 +75,7 @@
 						</div>
 					</div>
 
-					<div class="card">
+					<div class="card shadow">
 						<div class="card-body p-4">
 							<div class="row d-flex justify-content-between align-items-center">
 								<button

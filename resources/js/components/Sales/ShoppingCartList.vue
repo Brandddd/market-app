@@ -1,17 +1,17 @@
 <template>
-	<section class="h-100 bg-beige">
+	<section class="h-100 bg-white border rounded shadow-lg">
 		<div class="container h-100 py-5">
 			<div class="row d-flex justify-content-center align-items-center h-100">
 				<div class="col-10">
-					<div class="d-flex justify-content-between align-items-center mb-4">
-						<h3 class="fw-normal mb-0 text-black">
+					<div class="mb-4">
+						<h3 class="text-black text-center">
 							¡Hola <strong>{{ customer.name }}</strong
 							>, este es tu carrito de compras!
 						</h3>
 					</div>
 
 					<div v-for="(product, index) in cart_products" :key="index">
-						<div class="card rounded-3 mb-4">
+						<div class="card rounded-3 mb-4 shadow">
 							<div class="card-body p-4">
 								<div class="row d-flex justify-content-between align-items-center">
 									<div class="col-md-2 col-lg-2 col-xl-2">
@@ -70,7 +70,7 @@
 						</div>
 					</div>
 
-					<div class="card">
+					<div class="card shadow">
 						<div class="card-body">
 							<div class="row d-flex justify-content-between align-items-center">
 								<div>
@@ -78,6 +78,7 @@
 										<strong>Total: </strong>$ {{ this.total_price_to_pay }}
 									</h5>
 								</div>
+								<hr/>
 								<button type="button" class="btn btn-success btn-block btn-lg">
 									Proceder al pago
 								</button>
@@ -131,9 +132,3 @@ export default {
 	}
 }
 </script>
-
-<style scoped>
-.bg-beige {
-	background-color: #eee;
-}
-</style>

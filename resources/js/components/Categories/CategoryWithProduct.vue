@@ -1,11 +1,11 @@
 <template>
 	<div class="container">
-		<h2>
-			{{ category_data.name }}
+		<h2 class="text-center">
+			Estás viendo todos los productos de la categoría de: <strong>{{ category_data.name }}</strong>
 		</h2>
-		<div class="mb-4 py-4 d-flex flex-wrap justify-content-evenly border border-dark rounded">
+		<div class="mb-4 py-4 d-flex flex-wrap justify-content-evenly border rounded bg-white shadow-sm">
 			<div
-				class="card text-center mx-3 my-3"
+				class="card text-center mx-3 my-3 shadow"
 				style="width: 18rem"
 				v-for="product in category_data.products"
 				:key="product.id"

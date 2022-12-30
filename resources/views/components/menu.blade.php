@@ -34,6 +34,12 @@
                         </li>
                     @endif
                 @else
+                    {{-- Carrito --}}
+                    <a class="nav-link" href="{{ route('list-cart') }}">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        Carrito de compras
+                    </a>
+
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                             data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -56,12 +62,6 @@
                                     Gestión de usuarios
                                 </a>
                             @endrole
-
-                            {{-- Carrito --}}
-                            <a class="dropdown-item" href="{{ route('list-cart') }}">
-                                <i class="fa-solid fa-cart-shopping"></i>
-                                Carrito de compras
-                            </a>
 
                             {{-- Logout --}}
                             <a class="dropdown-item" href="{{ route('logout') }}"
