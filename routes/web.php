@@ -45,6 +45,8 @@ Route::group(['prefix' => 'Sales', 'controller' => SaleController::class], funct
 
 // -------------------- WEB Routes for Categories --------------------
 Route::group(['prefix' => 'Categories', 'controller' => CategoryController::class], function () {
+	Route::get('/ListOfCategories', 'showCategoriesView')->name('categories');
+	Route::post('/CreateCategory', 'createCategory');		// Create category
 	Route::get('/GetAllCategories', 'getAllCategories');
 	Route::get('/GetAllProductsByCategory/{category}', 'getAllProductsByCategory');
 });

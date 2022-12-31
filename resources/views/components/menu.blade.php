@@ -61,7 +61,13 @@
                                     <i class="fa-solid fa-users"></i>
                                     Gestión de usuarios
                                 </a>
-                            @endrole
+
+                                {{-- Categorías --}}
+                                <a class="dropdown-item" href="{{ route('categories') }}">
+                                    <i class="fa-solid fa-clipboard-check"></i>
+                                    Gestión de categorías
+                                </a>
+								@endrole
 
                             {{-- Logout --}}
                             <a class="dropdown-item" href="{{ route('logout') }}"

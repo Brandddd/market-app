@@ -31,5 +31,5 @@ Route::group(['prefix' => 'Sales', 'controller' => SaleController::class], funct
 
 // --- Category Routes ---
 Route::group(['prefix' => 'Categories', 'controller' => CategoryController::class], function () {
-	// Acá llamamos las rutas
+	Route::post('/CreateCategory', 'createCategory');
 });
