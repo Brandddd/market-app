@@ -1,9 +1,9 @@
 {{-- Menu --}}
-<nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+<nav class="navbar navbar-expand-md shadow bg-white sticky-top">
     <div class="container">
         <a class="navbar-brand font-" href="{{ url('/') }}">
-            <strong>MARKET ACCEDO</strong>
             <i class="fa-solid fa-shop"></i>
+            <strong> MARKET ACCEDO</strong>
         </a>
 
         {{-- - Burguer Button - --}}
