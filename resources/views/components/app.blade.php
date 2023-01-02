@@ -27,7 +27,7 @@
 
     {{-- - Content - --}}
     <main id="app">
-        <div class="container mt-5 ">
+        <div class="container">
             <x-alerts />
         </div>
         {{ $slot }}
