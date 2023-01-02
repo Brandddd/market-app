@@ -11,7 +11,7 @@
 									data-mdb-perfect-scrollbar="true"
 									style="position: relative; height: 700px"
 								>
-									<table class="table table-striped mb-0 text-center">
+									<table class="table table-striped mb-0 text-center" id="categoryTable">
 										<thead style="background-color: #002d72">
 											<tr>
 												<th scope="col">Identificador</th>
@@ -21,13 +21,13 @@
 										</thead>
 										<tbody>
 											<tr v-for="(category, index) in categories" :key="index">
-												<td>{{ index }}</td>
+												<td>{{ category.id }}</td>
 												<td>{{ category.name }}</td>
 												<td>
-													<button class="btn btn-warning me-2">
+													<button class="btn btn-warning me-2" @click="getCategory(category.id)">
 														Cambiar nombre
 													</button>
-													<button class="btn btn-danger">Eliminar</button>
+													<button class="btn btn-danger" @click="deleteCategory(category)">Eliminar</button>
 												</td>
 											</tr>
 										</tbody>
@@ -43,6 +43,9 @@
 </template>
 
 <script>
+import axios from 'axios'
+import swal from 'sweetalert2'
+
 export default {
 	props: ['categories_data'],
 	data() {
@@ -56,8 +59,42 @@ export default {
 	methods: {
 		index() {
 			this.categories = { ...this.categories_data }
+			/* this.mountDataTable() */
 		},
-
+		/* mountDataTable() {
+			// eslint-disable-next-line no-undef
+			setTimeout(() => $('#categoryTable').DataTable(), 200)
+		}, */
+		async getCategory(category_id) {
+			try {
+				const { data } = await axios.get(`Categories/GetCategory/${category_id}`)
+				this.$parent.editCategory(data.category)
+			} catch (error) {
+				console.error(error)
+			}
+		},
+		async deleteCategory(category) {
+			try {
+				const result = await swal.fire({
+					icon: 'info',
+					title: '¿Seguro deseas borrar la categoría?',
+					text: '¡También se borrarán los productos ligados a ella!',
+					showCancelButton: true,
+					confirmButtonText: 'Eliminar'
+				})
+				if (!result.isConfirmed) return
+				await axios.delete(`Categories/DeleteCategory/${category.id}`)
+				this.$parent.getCategories()
+				location.reload()
+				swal.fire({
+					icon: 'success',
+					title: 'Felicidades!',
+					text: 'Categoría eliminada exitosamente.'
+				})
+			} catch (error) {
+				console.error(error)
+			}
+		}
 	}
 }
 </script>

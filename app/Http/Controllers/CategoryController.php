@@ -44,6 +44,11 @@ class CategoryController extends Controller
 		return response()->json(['categories' => $categories], 200);
 	}
 
+	public function getCategory(Category $category)
+	{
+		return response()->json(['category' => $category], 200);
+	}
+
 	public function getAllProductsByCategory(Category $category)
 	{
 		$categoryWithProducts = $category->load('Products');
@@ -51,14 +56,18 @@ class CategoryController extends Controller
 	}
 
 	// -------------------- Update --------------------
-	public function updateCategory()
+	public function updateCategory(Category $category, Request $request)
 	{
-		# code...
+		$request_data = $request->all();
+		$category->update($request_data);
+		return response()->json(['category' => $category->refresh()], 201);
 	}
 
 	// -------------------- Delete --------------------
-	public function deleteCategory()
+	public function deleteCategory(Category $category)
 	{
-		# code...
+		$categoryWithProducts = $category->load('Products');
+		$categoryWithProducts->delete();
+		return response()->json([], 204);
 	}
 }
