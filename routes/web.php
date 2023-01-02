@@ -45,13 +45,16 @@ Route::group(['prefix' => 'Sales', 'controller' => SaleController::class], funct
 
 // -------------------- WEB Routes for Categories --------------------
 Route::group(['prefix' => 'Categories', 'controller' => CategoryController::class], function () {
-	Route::post('/CreateCategory', 'createCategory');		// Create category
-	Route::get('/GetCategory/{category}', 'getCategory');
-	Route::get('/GetAllCategories', 'getAllCategories');
 	Route::get('/GetAllProductsByCategory/{category}', 'getAllProductsByCategory');
-	Route::post('/UpdateCategory/{category}', 'updateCategory');
-	Route::delete('/DeleteCategory/{category}', 'deleteCategory');
-	Route::get('/', 'showCategoriesView')->name('categories');
+
+	Route::group(['middleware' => ['auth', 'role:admin']], function () {
+		Route::get('/', 'showCategoriesView')->name('categories');
+		Route::post('/CreateCategory', 'createCategory');		// Create category
+		Route::get('/GetAllCategories', 'getAllCategories');
+		Route::get('/GetCategory/{category}', 'getCategory');
+		Route::post('/UpdateCategory/{category}', 'updateCategory');
+		Route::delete('/DeleteCategory/{category}', 'deleteCategory');
+	});
 });
 
 // -------------------- Auth Rutes ----------------------

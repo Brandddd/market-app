@@ -34,8 +34,8 @@
     </main>
 </body>
 
-<hr/>
 <footer class="text-center text-light">
+	<hr/>
     <!-- Grid container -->
     <div class="container pt-2">
         <!-- Section: Social media -->

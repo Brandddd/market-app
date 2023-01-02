@@ -12,7 +12,7 @@
 		<tbody>
 			<tr v-for="(product, index) in products" :key="index">
 				<td>{{ product.name }}</td>
-				<td>{{ product.category.name }}</td>
+				<td>{{ product.category?.name }}</td>
 				<td>$ {{ product.price }}</td>
 				<td>{{ product.stock }}</td>
 				<td>
